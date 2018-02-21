@@ -1,7 +1,18 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <ChartComponent :chartData='data' :chartLabels='labels'/>
+    <h2>{{chartJs}} </h2>
+
+    <div align='center'>
+      <ChartComponent :chartType="'pie'" :chartData='data' :chartLabels='labels'/>
+    </div>
+    <hr>
+
+    <div align='center'>
+      <ChartComponent :chartType="'horizontalBar'" :chartData='data' :chartLabels='labels'/>
+    </div>
+    <hr>
+
   </div>
 </template>
 
@@ -16,6 +27,7 @@ export default {
 
   data() {
     return {
+      chartJs: "Chart JS",
       labels: ["Column1", "Column2", "Column3"],
       data: [51, 82, 97]
     };

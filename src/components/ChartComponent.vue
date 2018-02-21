@@ -1,7 +1,8 @@
 <template>
     <div class="char-component"> 
-        <h2> {{chartMessage}}</h2>
-        <canvas ref="chart" > </canvas>
+        <div class="canvas">
+          <canvas ref="chart" > </canvas>
+        </div>
     </div>
 </template>
 
@@ -12,7 +13,11 @@ export default {
   name: "chart-component",
   props: {
     chartTitle: {},
+    chartType: {
+      required: true
+    },
     chartData: {
+      type: [Array],
       required: true
     },
     chartLabels: {
@@ -21,7 +26,6 @@ export default {
   },
 
   data: () => ({
-    chartMessage: "Chart JS",
     chart: ""
   }),
 
@@ -38,20 +42,13 @@ export default {
   methods: {
     createChart() {
       this.chart = new Chart(this.$refs.chart, {
-        type: "pie",
+        type: this.$props.chartType,
         data: {
           labels: this.$props.chartLabels,
           datasets: [
             {
               data: this.$props.chartData,
-              backgroundColor: [
-                "rgba(255, 99, 132, 0.2)",
-                "rgba(54, 162, 235, 0.2)",
-                "rgba(255, 206, 86, 0.2)",
-                "rgba(75, 192, 192, 0.2)",
-                "rgba(153, 102, 255, 0.2)",
-                "rgba(255, 159, 64, 0.2)"
-              ]
+              backgroundColor: this.generateRandomColors()
             }
           ]
         },
@@ -61,11 +58,29 @@ export default {
           }
         }
       });
+    },
+
+    generateRandomColors() {
+      let colors = [];
+      debugger;
+
+      for (let index = 0; index < this.chartData.length; index++) {
+        let randColor1 = Math.floor(Math.random() * 255 + 1);
+        let randColor2 = Math.floor(Math.random() * 255 + 1);
+        let randColor3 = Math.floor(Math.random() * 255 + 1);
+        let randColor4 = Math.random() * (1 - 0.1) + 0.1;
+        let color = `rgba(${randColor1.toString()},${randColor2.toString()},${randColor3.toString()},${randColor4.toString()})`;
+        colors.push(color);
+        color = undefined;
+      }
+      return colors;
     }
   }
 };
 </script>
 
 <style scoped>
-
+.canvas {
+  width: 50%;
+}
 </style>
