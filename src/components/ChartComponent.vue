@@ -53,6 +53,11 @@ export default {
           ]
         },
         options: {
+          title: {
+            display: true,
+            text: this.$props.chartTitle,
+            fontSize: 18
+          },
           animations: {
             duration: "1500"
           }

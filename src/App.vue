@@ -4,12 +4,12 @@
     <h2>{{chartJs}} </h2>
 
     <div align='center'>
-      <ChartComponent :chartType="'pie'" :chartData='data' :chartLabels='labels'/>
+      <ChartComponent :chartTitle="'Pie Chart'" :chartType="'pie'" :chartData='data' :chartLabels='labels'/>
     </div>
     <hr>
 
     <div align='center'>
-      <ChartComponent :chartType="'horizontalBar'" :chartData='data' :chartLabels='labels'/>
+      <ChartComponent :chartTitle="'Horizontal Bar Chart'" :chartType="'horizontalBar'" :chartData='data' :chartLabels='labels'/>
     </div>
     <hr>
 
